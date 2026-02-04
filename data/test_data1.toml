@@ -1,0 +1,83 @@
+[[packets]]
+packet_id = 1
+altitude_ft = 50.0
+airspeed_knots = 0.0
+vertical_speed_fps = 5.2
+wind_speed_mph = 2.5
+
+[[packets]]
+packet_id = 2
+altitude_ft = 120.5
+airspeed_knots = 15.2
+vertical_speed_fps = 8.1
+wind_speed_mph = 3.1
+
+[[packets]]
+packet_id = 3
+altitude_ft = 250.0
+airspeed_knots = 24.5
+vertical_speed_fps = 12.0
+wind_speed_mph = 5.0
+
+[[packets]]
+packet_id = 4
+altitude_ft = 400.2
+airspeed_knots = 30.1
+vertical_speed_fps = 6.5
+wind_speed_mph = 4.2
+
+[[packets]]
+packet_id = 5
+altitude_ft = 450.5
+airspeed_knots = 28.4
+vertical_speed_fps = -2.1
+wind_speed_mph = 6.8
+
+[[packets]]
+packet_id = 6
+altitude_ft = 200.0
+airspeed_knots = 10.2
+vertical_speed_fps = -15.5
+wind_speed_mph = 1.2
+
+[[packets]]
+packet_id = 95
+altitude_ft = 3720.7
+airspeed_knots = 113.0
+vertical_speed_fps = -0.4
+wind_speed_mph = 19.6
+
+[[packets]]
+packet_id = 96
+altitude_ft = 3760.0
+airspeed_knots = 114.3
+vertical_speed_fps = -0.9
+wind_speed_mph = 19.8
+
+[[packets]]
+packet_id = 97
+altitude_ft = 3800.6
+airspeed_knots = 115.0
+vertical_speed_fps = -1.3
+wind_speed_mph = 20.0
+
+[[packets]]
+packet_id = 98
+altitude_ft = 3840.0
+airspeed_knots = 116.1
+vertical_speed_fps = -1.7
+wind_speed_mph = 20.2
+
+[[packets]]
+packet_id = 99
+altitude_ft = 3880.4
+airspeed_knots = 117.0
+vertical_speed_fps = -2.0
+wind_speed_mph = 20.4
+
+[[packets]]
+packet_id = 100
+altitude_ft = 3920.0
+airspeed_knots = 118.2
+vertical_speed_fps = -1.5
+wind_speed_mph = 20.6
