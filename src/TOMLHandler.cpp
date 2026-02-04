@@ -2,7 +2,6 @@
 #include "toml.hpp"
 #include <sstream>
 #include <iostream>
-#include <fstream>
 
 bool TOMLHandler::load(std::string filename) {
     table.clear();
@@ -33,8 +32,8 @@ bool TOMLHandler::load(std::string filename) {
             for (const auto& h : headers) {
                 std::stringstream ss;
                 // Ambil value-nya dulu baru masukkan ke stringstream
-                auto val = packet_table->at(h);
-                ss << val.node();
+                auto val = packet_table->get(h);
+                ss << val;
                 
                 std::string s = ss.str();
                 // Bersihkan kutip dua agar sama seperti CSV (polos)
