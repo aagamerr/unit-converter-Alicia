@@ -4,7 +4,7 @@
 #include <iostream>
 
 bool TOMLHandler::load(std::string filename) {
-    table.clear(); // Sama dengan CSV
+    table.clear();
     std::ifstream file(filename);
      if (!file.is_open()) {
         std::cerr << "Error: Could not open " << filename << "\n";
@@ -25,7 +25,6 @@ bool TOMLHandler::load(std::string filename) {
             std::string key = line.substr(0, delimiterPos);
             std::string value = line.substr(delimiterPos + 1);
 
-            // Bersihkan spasi (trimming)
             key.erase(0, key.find_first_not_of(" \t"));
             key.erase(key.find_last_not_of(" \t") + 1);
             value.erase(0, value.find_first_not_of(" \t"));
@@ -34,7 +33,6 @@ bool TOMLHandler::load(std::string filename) {
             bool headerFound = false;
             for (size_t i = 0; i < table.size(); i++) {
                 if (table[i][0] == key) {
-                    // Pastikan ukuran kolom sinkron dengan baris sekarang
                     while (table[i].size() <= (size_t)currentRow + 1) {
                         table[i].push_back("");
                     }
@@ -58,13 +56,10 @@ bool TOMLHandler::load(std::string filename) {
     file.close();
     return true;
 }
-
 std::vector<std::string> TOMLHandler::getColumn(std::string selector) {
     std::vector<std::string> results;
-    // Mencari kolom berdasarkan nama header (selector)
     for (size_t i = 0; i < table.size(); i++) {
         if (table[i][0] == selector) {
-            // Sesuai permintaan: Ambil data mulai index 1 (skip header)
             for (size_t j = 1; j < table[i].size(); j++) {
                 results.push_back(table[i][j]);
             }
@@ -75,7 +70,7 @@ std::vector<std::string> TOMLHandler::getColumn(std::string selector) {
 }
 
 void TOMLHandler::appendColumn(std::string newHeader, const std::vector<std::string>& values) {
-    std::vector<std::string> row; // Menggunakan nama 'row' agar mirip CSV walau ini kolom
+    std::vector<std::string> row;
     row.push_back(newHeader);
     for (const auto& v : values) {
         row.push_back(v);
@@ -91,8 +86,6 @@ void TOMLHandler::save(std::string filename) {
     for (const auto& col : table) {
         if (col.size() > maxRows) maxRows = col.size();
     }
-
-    // Menggunakan loop 'r' (row) dan 'c' (column) yang standar
     for (size_t j = 1; j < maxRows; j++) {
         file << "[[packets]]\n";
         for (size_t i = 0; i < table.size(); i++) {
