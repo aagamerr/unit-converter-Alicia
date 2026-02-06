@@ -6,7 +6,7 @@
 bool TOMLHandler::load(std::string filename) {
     table.clear();
     std::ifstream file(filename);
-     if (!file.is_open()) {
+    if (!file.is_open()) {
         std::cerr << "Error: Could not open " << filename << "\n";
         return false;
     }
@@ -19,17 +19,14 @@ bool TOMLHandler::load(std::string filename) {
             currentRow++;
             continue;
         }
-
         size_t delimiterPos = line.find('=');
         if (delimiterPos != std::string::npos) {
             std::string key = line.substr(0, delimiterPos);
             std::string value = line.substr(delimiterPos + 1);
-
             key.erase(0, key.find_first_not_of(" \t\r\n"));
             key.erase(key.find_last_not_of(" \t\r\n") + 1);
             value.erase(0, value.find_first_not_of(" \t\r\n"));
             value.erase(value.find_last_not_of(" \t\r\n") + 1);
-
             bool headerFound = false;
             for (size_t i = 0; i < table.size(); i++) {
                 if (table[i][0] == key) {
@@ -43,19 +40,20 @@ bool TOMLHandler::load(std::string filename) {
             }
 
             if (!headerFound) {
-                std::vector<std::string> newCol;
-                newCol.push_back(key); // Index 0 sebagai header
+                std::vector<std::string> newColumn;
+                newColumn.push_back(key);
                 for (int j = 0; j < currentRow; j++) {
-                    newCol.push_back("");
+                    newColumn.push_back("");
                 }
-                newCol.push_back(value);
-                table.push_back(newCol);
+                newColumn.push_back(value);
+                table.push_back(newColumn);
             }
         }
     }
     file.close();
     return true;
 }
+
 std::vector<std::string> TOMLHandler::getColumn(std::string selector) {
     std::vector<std::string> results;
     for (size_t i = 0; i < table.size(); i++) {
@@ -70,21 +68,25 @@ std::vector<std::string> TOMLHandler::getColumn(std::string selector) {
 }
 
 void TOMLHandler::appendColumn(std::string newHeader, const std::vector<std::string>& values) {
-    std::vector<std::string> row;
-    row.push_back(newHeader);
+    std::vector<std::string> newColumn;
+    newColumn.push_back(newHeader); 
     for (const auto& v : values) {
-        row.push_back(v);
+        newColumn.push_back(v);
     }
-    table.push_back(row);
+    
+    table.push_back(newColumn);
 }
 
 void TOMLHandler::save(std::string filename) {
     std::ofstream file(filename);
-    if (!file.is_open() || table.empty()) return;
-
+    if (!file.is_open() || table.empty()){
+        return;
+    }
     size_t maxRows = 0;
     for (const auto& col : table) {
-        if (col.size() > maxRows) maxRows = col.size();
+        if (col.size() > maxRows){
+            maxRows = col.size();
+        }
     }
     for (size_t j = 1; j < maxRows; j++) {
         file << "[[packets]]\n";
