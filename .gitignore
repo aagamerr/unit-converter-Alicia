@@ -2,3 +2,4 @@
 *.vcdb*
 *.o
 unitconverter
+build/
