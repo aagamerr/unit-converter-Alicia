@@ -25,10 +25,10 @@ bool TOMLHandler::load(std::string filename) {
             std::string key = line.substr(0, delimiterPos);
             std::string value = line.substr(delimiterPos + 1);
 
-            key.erase(0, key.find_first_not_of(" \t"));
-            key.erase(key.find_last_not_of(" \t") + 1);
-            value.erase(0, value.find_first_not_of(" \t"));
-            value.erase(value.find_last_not_of(" \t") + 1);
+            key.erase(0, key.find_first_not_of(" \t\r\n"));
+            key.erase(key.find_last_not_of(" \t\r\n") + 1);
+            value.erase(0, value.find_first_not_of(" \t\r\n"));
+            value.erase(value.find_last_not_of(" \t\r\n") + 1);
 
             bool headerFound = false;
             for (size_t i = 0; i < table.size(); i++) {
