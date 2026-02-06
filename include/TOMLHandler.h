@@ -13,7 +13,7 @@ private:
 public:
     bool load(std::string filename) override;
 
-    // Selector: CSV column number
+    // Selector: TOML column number
     std::vector<std::string> getColumn(std::string selector) override ;
 
     void appendColumn(std::string newHeader, const std::vector<std::string>& values) override;

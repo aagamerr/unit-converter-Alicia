@@ -3,15 +3,17 @@
 
 #include "FileHandler.h"
 #include "CsvHandler.h"
+#include "TOMLHandler.h"
 
 #include <iostream>
 #include <string>
 
-FileHandler* getFileHanler(std::string filename) {
+FileHandler* getFileHandler(std::string filename) {
     if (filename.find(".csv") != std::string::npos) {
         return new CsvHandler();
-
-    } else {
+    } else if (filename.find(".toml") != std::string::npos) {
+        return new TOMLHandler();
+    }else {
         std::cerr << "File format is not supported!\n";
         return nullptr;
     }
@@ -22,7 +24,7 @@ int main(){
     std::cout << "Enter file location: ";
     std::cin >> filename;
 
-    FileHandler* fileHandler = getFileHanler(filename);
+    FileHandler* fileHandler = getFileHandler(filename);
     if (fileHandler == nullptr) return -1;
     
     if (!fileHandler->load(filename)) {
